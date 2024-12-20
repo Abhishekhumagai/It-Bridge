@@ -7,6 +7,8 @@ import "react-multi-carousel/lib/styles.css";
 import CountUp from "react-countup";
 import { happpy } from "../api/home";
 import { useQuery } from "@tanstack/react-query";
+import { service } from "../api/service.js";
+import { NavLink } from "react-router-dom";
 function Home() {
   const {
     error,
@@ -19,8 +21,18 @@ function Home() {
   });
 
   const data = axiosData?.data;
+  const {
+    serviceisLoading,
+    serviceisError,
+    data: serviceaxiosData,
+  } = useQuery({
+    queryKey: ["service"],
+    queryFn: service,
+  });
 
-  if (isLoading) {
+  const serData = serviceaxiosData?.data?.slice(0, 3);
+  console.log(serData);
+  if (isLoading || serviceisLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <p className="text-xl font-semibold text-gray-500">Loading...</p>
@@ -28,30 +40,11 @@ function Home() {
     );
   }
 
-  if (isError) {
+  if (isError || serviceisError) {
     console.error(error);
     return <div>{error.message || "An error occurred"}</div>;
   }
-  const services = [
-    {
-      img: "/public/image/website.jpg",
-      title: "Web Development",
-      description:
-        "Web development is the process of creating, designing, and maintaining websites or web applications using technologies .",
-    },
-    {
-      img: "/public/image/website.jpg",
-      title: "Hassle-Free Servicing",
-      description:
-        "Hassle-Free Servicing offers seamless, convenient, and reliable service solutions with minimal effort required from the customer.",
-    },
-    {
-      img: "/public/image/website.jpg",
-      title: "Community Contributions",
-      description:
-        "Community Contributions enable individuals to support collective initiatives, charitable causes, research projects, and social campaigns, fostering positive impact and shared progress.",
-    },
-  ];
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -101,26 +94,30 @@ function Home() {
             Our Services
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+            {serData?.map((service, index) => (
               <div
                 key={index}
                 className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition"
               >
                 <img
-                  src={service.img}
+                  src={service.photo}
                   alt={service.title}
-                  className="mx-auto mb-6 rounded-lg"
+                  className="w-full h-48 object-cover rounded-lg mb-6"
                 />
                 <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 text-sm sm:text-base">
-                  {service.description}
-                </p>
               </div>
             ))}
           </div>
         </div>
+        <NavLink to={"/ourservice"}>
+          <div className="flex justify-between mx-24 ">
+            <button className="mt-8 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ml-auto">
+              View More
+            </button>
+          </div>
+        </NavLink>
       </section>
 
       <div className="flex flex-wrap justify-center gap-20 p-10 bg-[#8e0438] text-white">
