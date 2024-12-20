@@ -66,15 +66,20 @@ function Home() {
   const stats = [
     { Icon: FaUsers, number: 35, title: "Employees" },
     { Icon: AiOutlineLike, number: 100, title: "Happy Clients" },
-    { Icon: RiCupLine, number: 500, title: "Business Years" },
-    { Icon: IoCodeSlashOutline, number: 7, title: "Projects Completed" },
+    { Icon: RiCupLine, number: 7, title: "Business Years" },
+    { Icon: IoCodeSlashOutline, number: 500, title: "Projects Completed" },
   ];
-
+  const scrollToSection = () => {
+    const targetSection = document.getElementById("target-section");
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div className="font-sans overflow-clip">
-      <section className="bg-[url('/image/home.jpg')] bg-cover bg-center text-white h-screen flex items-center justify-center relative">
-        <div className="absolute inset-0 bg-black bg-opacity-50 blur-2xl"></div>
-        <div className="text-center px-4 sm:px-6 md:px-12 relative z-auto">
+      <section className="bg-[url('/image/home.jpg')] bg-cover bg-center text-white h-screen flex items-center justify-center relative bg-[#ffffff]">
+        <div className="absolute inset-0 bg-black bg-opacity-50 blur-2xl "></div>
+        <div className="text-center px-4 sm:px-6 md:px-12 relative z-auto ">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight mb-6">
             Web Development
           </h1>
@@ -82,13 +87,28 @@ function Home() {
             Discover the joy of cycling while contributing to a sustainable
             future.
           </p>
-          <button className="bg-white text-blue-600 px-6 py-3 rounded-md text-sm sm:text-lg font-semibold hover:bg-gray-100 transition ">
-            Get Started
-          </button>
+          <div className="flex flex-col items-center">
+            <button className="bg-white text-blue-600 px-6 py-3 w-40 mt-40 align-middle rounded-md text-sm sm:text-lg font-semibold hover:bg-gray-100 transition ">
+              Get Started
+            </button>
+            <button
+              onClick={scrollToSection}
+              className="down-arrow"
+              style={{
+                marginTop: "20px",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "2rem",
+              }}
+            >
+              ↓
+            </button>
+          </div>
         </div>
       </section>
 
-      <section className="py-16 bg-gray-100">
+      <section className="py-16 bg-[#ffffff] " id="target-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-gray-800">
             Our Services
@@ -114,7 +134,7 @@ function Home() {
         <NavLink to={"/ourservice"}>
           <div className="flex justify-between mx-24 ">
             <button className="mt-8 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ml-auto">
-              View More
+              View More...
             </button>
           </div>
         </NavLink>
@@ -137,8 +157,8 @@ function Home() {
         ))}
       </div>
 
-      <section className="py-10 bg-gray-100 h-96  " data-aos="slide-left">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
+      <section className="py-10 bg-white h-96  " data-aos="slide-left ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center ">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-gray-800">
             Our Happy Clients
           </h2>
@@ -150,7 +170,7 @@ function Home() {
                     <img
                       src={client.photo}
                       alt={client?.slug}
-                      className="rounded-lg shadow-md sm:w-[150px] md:w-[200px]"
+                      className=" sm:w-[150px] md:w-[200px] bg-white"
                     />
                   </div>
                 );
@@ -160,19 +180,21 @@ function Home() {
         </div>
       </section>
       <section
-        className="bg-white text-black
+        className="bg-gray-100 text-black
        py-12 sm:py-16 my-10"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 h-52 text-center ">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 ">
             Ready to Develope?
           </h2>
           <p className="text-sm sm:text-lg md:text-xl mb-8">
             Sign up today and embark on an exciting journey with us.
           </p>
-          <button className="bg-white text-blue-600 px-6 py-3 rounded-md text-sm sm:text-lg font-semibold hover:bg-gray-100 transition">
-            Join Us
-          </button>
+          <NavLink to={"/contact"}>
+            <button className="bg-white text-blue-600 px-6 py-3 rounded-md text-sm sm:text-lg font-semibold hover:bg-gray-100 transition">
+              Join Us
+            </button>
+          </NavLink>
         </div>
       </section>
     </div>

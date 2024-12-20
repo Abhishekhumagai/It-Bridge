@@ -8,3 +8,6 @@ export async function happpy() {
 export async function footer() {
   return await axiosWithAuth.get(BASE_URL + "site-setting");
 }
+export async function branch() {
+  return await axiosWithAuth.get(BASE_URL + "branch");
+}
