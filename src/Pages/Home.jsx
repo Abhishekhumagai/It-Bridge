@@ -9,6 +9,7 @@ import { happpy } from "../api/home";
 import { useQuery } from "@tanstack/react-query";
 import { service } from "../api/service.js";
 import { NavLink } from "react-router-dom";
+import { FaArrowDown } from "react-icons/fa";
 function Home() {
   const {
     error,
@@ -34,8 +35,11 @@ function Home() {
   console.log(serData);
   if (isLoading || serviceisLoading) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-xl font-semibold text-gray-500">Loading...</p>
+      <div className="flex justify-center items-center h-screen text-xl text-gray-600">
+        <div className="flex flex-col items-center">
+          <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-opacity-75"></div>
+          <span className="mt-4">Loading Home...</span>
+        </div>
       </div>
     );
   }
@@ -77,7 +81,7 @@ function Home() {
   };
   return (
     <div className="font-sans overflow-clip">
-      <section className="bg-[url('/image/home.jpg')] bg-cover bg-center text-white h-screen flex items-center justify-center relative bg-[#ffffff]">
+      <section className="bg-[url('/image/home.jpg')] bg-cover bg-center text-white h-screen flex flex-col items-center justify-center relative bg-[#ffffff]">
         <div className="absolute inset-0 bg-black bg-opacity-50 blur-2xl "></div>
         <div className="text-center px-4 sm:px-6 md:px-12 relative z-auto ">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight mb-6">
@@ -87,24 +91,27 @@ function Home() {
             Discover the joy of cycling while contributing to a sustainable
             future.
           </p>
+
           <div className="flex flex-col items-center">
             <button className="bg-white text-blue-600 px-6 py-3 w-40 mt-40 align-middle rounded-md text-sm sm:text-lg font-semibold hover:bg-gray-100 transition ">
               Get Started
             </button>
-            <button
-              onClick={scrollToSection}
-              className="down-arrow"
-              style={{
-                marginTop: "20px",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                fontSize: "2rem",
-              }}
-            >
-              ↓
-            </button>
           </div>
+        </div>
+        <div className=" rounded-full w-14 h-14  mt-40 flex justify-center align-bottom bg-red-300">
+          <button
+            onClick={scrollToSection}
+            className="down-arrow  animate-bounce "
+            style={{
+              marginTop: "20px",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              fontSize: "2rem",
+            }}
+          >
+            <FaArrowDown />
+          </button>
         </div>
       </section>
 
@@ -166,7 +173,7 @@ function Home() {
             <Carousel responsive={responsive} className="mx-20">
               {data?.map((client, index) => {
                 return (
-                  <div key={index} className="px-8 m-0">
+                  <div key={index} className="flex justify-center ">
                     <img
                       src={client.photo}
                       alt={client?.slug}
