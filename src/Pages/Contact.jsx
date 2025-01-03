@@ -125,7 +125,7 @@ const Contact = () => {
                 {...register("phone_no", {
                   required: "Phone number is required",
                   pattern: {
-                    value: /^[0-9]{10,}$/, // At least 10 digits
+                    value: /^[0-9]{10,}$/,
                     message: "Phone number must have at least 10 digits",
                   },
                 })}
@@ -192,13 +192,13 @@ const Contact = () => {
             <div className="bg-gray-100 p-6 rounded-md shadow-md">
               <h3 className="text-lg font-bold mb-4">Contact Details</h3>
               <p className="text-sm">
-                <strong>Phone:</strong> +1 234 567 890
+                <strong>Phone:</strong>977-9845046048
               </p>
               <p className="text-sm mt-2">
-                <strong>Email:</strong> contact@company.com
+                <strong>Email:</strong> info@itbridge.com.np
               </p>
               <p className="text-sm mt-2">
-                <strong>Address:</strong> 123 Business St, Cityville, Country
+                <strong>Address:</strong> Banepa-8 Shantinagar
               </p>
             </div>
 

@@ -40,7 +40,6 @@ function Footer() {
     <footer className="max-lg:w-full">
       {location.pathname !== "/contact" && (
         <>
-          {/* Call-to-Action Section */}
           <div className="flex flex-col md:flex-row justify-between items-center border-b border-gray-700 bg-[#8e0438] py-8 px-6 md:px-12">
             <div className="text-center md:text-left">
               <h1 className="text-3xl font-bold text-white mb-2">
@@ -60,7 +59,6 @@ function Footer() {
             ></iframe>
           </div>
 
-          {/* Footer Content Section */}
           <div className="bg-[#272526] py-10 px-6 md:px-12">
             {data.map((service, index) => (
               <>
@@ -68,7 +66,6 @@ function Footer() {
                   key={index}
                   className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12"
                 >
-                  {/* Pages Section */}
                   <div className="text-center">
                     <h3 className="text-xl font-semibold mb-4 text-white">
                       Pages
@@ -124,8 +121,6 @@ function Footer() {
                       </li>
                     </ul>
                   </div>
-
-                  {/* Dynamic Services Section */}
 
                   <div key={index} className="text-center ">
                     <h3 className="text-xl font-semibold mb-4 text-white">

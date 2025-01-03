@@ -309,7 +309,7 @@ function Home() {
             Sign up today and embark on an exciting journey with us.
           </p>
           <NavLink to={"/contact"}>
-            <button className="bg-white text-blue-600 px-6 py-3 rounded-md text-sm sm:text-lg font-semibold hover:bg-gray-100 transition">
+            <button className="bg-white  px-6 py-3 rounded-md text-sm sm:text-lg font-semibold hover:bg-gray-100 transition bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
               Join Us
             </button>
           </NavLink>
