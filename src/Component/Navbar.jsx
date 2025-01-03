@@ -26,7 +26,7 @@ function Navbar() {
             <a href="/home">
               <img
                 src="../../public/image/today.png"
-                alt=""
+                alt=" hello"
                 className="h-12 w-30  rounded-xl"
               />
             </a>

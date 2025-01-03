@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { contact } from "../api/api";
 import { BASE_URL } from "../constants/Envconstants";
+import Swal from "sweetalert2";
 
 const Contact = () => {
   const {
@@ -14,17 +15,26 @@ const Contact = () => {
   const queryClient = useQueryClient();
   console.log(queryClient);
 
-  const { mutate: addcontactMutate, isPending } = useMutation({
+  const { mutate: addcontactMutate, isLoading } = useMutation({
     mutationFn: contact,
     onError: (err) => {
-      console.log(err);
-      alert("Failed to add contact!!!");
+      console.error(err);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to add contact!",
+      });
     },
     onSuccess: () => {
-      alert("message Sent sucessfully");
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Message sent successfully!",
+      });
       reset();
     },
   });
+
   const onsubmit = (data) => {
     const contactdata = {
       name: data.name,
@@ -52,7 +62,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 my-10">
           <form
             onSubmit={handleSubmit(onsubmit)}
             className="space-y-6 bg-white p-6 md:p-8 rounded-md shadow-md"
@@ -166,10 +176,14 @@ const Contact = () => {
             <div>
               <button
                 type="submit"
-                disabled={isPending}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-md shadow focus:outline-none focus:ring-2 focus:ring-purple-500"
+                disabled={isLoading}
+                className={`w-full ${
+                  isLoading
+                    ? "bg-gray-400"
+                    : "bg-purple-600 hover:bg-purple-700"
+                } text-white font-semibold py-2 px-4 rounded-md shadow`}
               >
-                Send Message
+                {isLoading ? "Sending..." : "Send Message"}
               </button>
             </div>
           </form>

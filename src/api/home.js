@@ -11,3 +11,6 @@ export async function footer() {
 export async function branch() {
   return await axiosWithAuth.get(BASE_URL + "branch");
 }
+export async function about() {
+  return await axiosWithAuth.get(BASE_URL + "about-us");
+}
